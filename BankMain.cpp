@@ -22,8 +22,8 @@ Conner Fissell     03-25-2020         1.0  Original version
 
 // Prototypes
 void simulate();
-void processArrival(Event x, EventQueue<Event> y, CustQueue<Event> z);
-void processDepart(Event x, EventQueue<Event> y, CustQueue<Event> z);
+void processArrival(Event x, EventQueue<Event> *y, CustQueue<Customer> *z);
+void processDepart(Event x, EventQueue<Event> *y, CustQueue<Customer> *z);
 /* -----------------------------------------------------------------------------
 FUNCTION:          
 DESCRIPTION:       
@@ -43,11 +43,12 @@ NOTES:
 ------------------------------------------------------------------------------- */
 void simulate()
 {
-    int arrival, transaction, lineLength;
+    int customer = 1;
+    int arrival, transaction;
     char line[20]; //aString[2], tString[2];
     std::string inputLine, aString, tString;
-    EventQueue<Event> PQ;
-    CustQueue<Event> CQ;
+    EventQueue<Event> *PQ = new EventQueue<Event>();
+    CustQueue<Customer> *CQ = new CustQueue<Customer>();
 
     std::fstream fileIn;
     fileIn.open("InputFile.txt", std::ios::in);
@@ -66,12 +67,14 @@ void simulate()
         transaction = stoi(tString);
 
         Event anEvent = Event(arrival, transaction);
-        PQ.add(anEvent);
+        PQ->add(anEvent);
+        anEvent.cust(customer);
+        customer++;
     }
 
-    while (!PQ.isEmpty()) // Event Loop
+    while (!PQ->isEmpty()) // Event Loop
     {
-        Event newEvent = PQ.peek();
+        Event newEvent = PQ->peek();
         int currentTime = newEvent.tTime; // Get current time
 
         if (newEvent.aType)
@@ -87,8 +90,9 @@ DESCRIPTION:
 RETURNS:           
 NOTES:             
 ------------------------------------------------------------------------------- */
-void processArrival(Event newEvent, EventQueue<Event> PQ, CustQueue<Event> CQ)
+void processArrival(Event arrivalEvent, EventQueue<Event> PQ, CustQueue<Customer> CQ)
 {
+    bool removed = PQ.remove(); // Remove this event from the event list
 }
 
 /* -----------------------------------------------------------------------------
@@ -97,6 +101,6 @@ DESCRIPTION:
 RETURNS:           
 NOTES:             
 ------------------------------------------------------------------------------- */
-void processDepart(Event newEvent, EventQueue<Event> PQ, CustQueue<Event> CQ)
+void processDepart(Event departEvent, EventQueue<Event> PQ, CustQueue<Customer> CQ)
 {
 }

@@ -19,6 +19,11 @@ Conner Fissell     03-25-2020         1.0  Original version
 class Customer
 {
 public:
+    int custNum;
+
+    Customer();
+    Customer(int num);
+    ~Customer();
 };
 
 #endif

@@ -21,6 +21,7 @@ class Event
 public:
     int arr, tTime;
     bool aType;
+    Customer cust(int num);
 
     Event();
     Event(int x, int y);
