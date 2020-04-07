@@ -33,7 +33,7 @@ RETURNS:
 NOTES:              
 ------------------------------------------------------------------------------- */
 template <class DT>
-CustQueue<DT>::CustQueue(const CustQueue &aQueue)
+CustQueue<DT>::CustQueue(const DT &aQueue)
 {
     listPtr = aQueue->listPtr();
 }

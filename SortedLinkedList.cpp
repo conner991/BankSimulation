@@ -53,6 +53,18 @@ SortedLinkedList<DT>::~SortedLinkedList()
 
 /* -----------------------------------------------------------------------------
 FUNCTION:          
+DESCRIPTION:       Default Constructor for LinkedList class
+RETURNS:           
+NOTES:             
+------------------------------------------------------------------------------- */
+template <class DT>
+bool SortedLinkedList<DT>::isEmpty() const
+{
+    return LinkedList<DT>::isEmpty();
+}
+
+/* -----------------------------------------------------------------------------
+FUNCTION:          
 DESCRIPTION:       Inserts an entry into this sorted list in its proper order
                     so that the list remains sorted.??
 RETURNS:           

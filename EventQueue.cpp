@@ -22,6 +22,7 @@ NOTES:
 template <class DT>
 EventQueue<DT>::EventQueue()
 {
+    slistPtr = new SortedLinkedList<DT>();
 }
 
 /* -----------------------------------------------------------------------------
@@ -55,6 +56,7 @@ NOTES:
 template <class DT>
 bool EventQueue<DT>::isEmpty() const
 {
+    return SortedLinkedList<DT>::isEmpty();
 }
 
 /* -----------------------------------------------------------------------------
@@ -85,13 +87,23 @@ bool EventQueue<DT>::remove()
 
 /* -----------------------------------------------------------------------------
 FUNCTION:          
-DESCRIPTION:       Default Constructor for LinkedList class
+DESCRIPTION:       
 RETURNS:           
 NOTES:             
 ------------------------------------------------------------------------------- */
 template <class DT>
 DT EventQueue<DT>::peek() const
 {
+    if (SortedLinkedList<DT>::isEmpty())
+    {
+        std::cout << "Event Queue is Empty!" << std::endl
+                  << std::endl;
+    }
+
+    else
+    {
+        return slistPtr->getEntry(1);
+    }
 }
 
 #endif
