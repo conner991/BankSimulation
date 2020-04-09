@@ -100,10 +100,9 @@ DT CustQueue<DT>::peekFront() const
                   << std::endl;
     }
 
-    else
-    {
-        return listPtr->getEntry(1);
-    }
+
+    return listPtr->getEntry(1);
+    
 }
 
 #endif

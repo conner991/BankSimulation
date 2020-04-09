@@ -17,8 +17,8 @@ Conner Fissell     03-25-2020         1.0  Original version
 
 // Prototypes
 void simulate();
-void processArrival(Event x, EventQueue<Event> *y, CustQueue<Customer> *z, bool teller, int &curretTime);
-void processDepart(EventQueue<Event> *y, CustQueue<Customer> *z, bool teller, int &currentTime);
+void processArrival(Event x, EventQueue<Event> *y, CustQueue<Customer> *z, bool teller, int curretTime);
+void processDepart(EventQueue<Event> *y, CustQueue<Customer> *z, bool teller, int currentTime);
 void Delete();
 /* -----------------------------------------------------------------------------
 FUNCTION:          
@@ -33,6 +33,8 @@ int main()
     //Delete();
 
     std::cout << "\nSimulation Over\n\n";
+
+    return 0;
 }
 
 /* -----------------------------------------------------------------------------
@@ -59,14 +61,9 @@ void simulate()
         std::cout << "\nError Opening File.\n\n";
     }
 
-    while (fileIn) // Create and add arrivals to the EventQueue
+    while (fileIn >> arrival) // Create and add arrivals to the EventQueue
     {
-        fileIn.getline(line, 20, '\n');
-        aString.assign(line, 1, 3);
-        arrival = stoi(aString);
-        tString.assign(line, 4, 10);
-        transaction = stoi(tString);
-
+        fileIn >> transaction;
         Event anEvent = Event(eType, arrival, transaction);
         PQ->add(anEvent);
         customer++;
@@ -80,10 +77,17 @@ void simulate()
         int currentTime = newEvent.arrTime; // Get current time
 
         if (newEvent.eventType == 'A')
+        {
             processArrival(newEvent, PQ, CQ, tellerAvail, currentTime);
+        }
+
         else
+        {
             processDepart(PQ, CQ, tellerAvail, currentTime);
-    }
+        }
+    
+    }   
+    
 }
 
 /* -----------------------------------------------------------------------------
@@ -92,27 +96,27 @@ DESCRIPTION:
 RETURNS:           
 NOTES:             
 ------------------------------------------------------------------------------- */
-void processArrival(Event arrivalEvent, EventQueue<Event> &PQ, CustQueue<Customer> &CQ, bool tellerAvail, int &currentTime)
+void processArrival(Event arrivalEvent, EventQueue<Event> *PQ, CustQueue<Customer> *CQ, bool tellerAvail, int currentTime)
 {
     int departTime;
 
-    PQ.remove(); // Remove this event from the event list,
+    PQ->remove(); // Remove this event from the event list,
     Customer customer;
     customer.arrTime = arrivalEvent.arrTime;
     customer.transTime = arrivalEvent.tTime;
 
-    if (CQ.isEmpty() && tellerAvail)
+    if (CQ->isEmpty() && tellerAvail)
     {
         char eType = 'D';
         departTime = currentTime + arrivalEvent.tTime;
         Event newDepartEvent = Event(eType, departTime, 0); // create with the char D
-        PQ.add(newDepartEvent);
+        PQ->add(newDepartEvent);
         tellerAvail = false;
     }
 
     else
     {
-        CQ.enqueue(customer);
+        CQ->enqueue(customer);
     }
 
     std::cout << "Processing an Arrival event at time:       " << currentTime << std::endl;
@@ -124,19 +128,19 @@ DESCRIPTION:
 RETURNS:           
 NOTES:             
 ------------------------------------------------------------------------------- */
-void processDepart(EventQueue<Event> &PQ, CustQueue<Customer> &CQ, bool tellerAvail, int &currentTime)
+void processDepart(EventQueue<Event> *PQ, CustQueue<Customer> *CQ, bool tellerAvail, int currentTime)
 {
     int departTime;
     char eType = 'D';
 
-    PQ.remove(); // Remove this event from the event list
-    if (!CQ.isEmpty())
+    PQ->remove(); // Remove this event from the event list
+    if (!CQ->isEmpty())
     {
-        Customer customer = CQ.peekFront();
-        CQ.dequeue();
+        Customer customer = CQ->peekFront();
+        CQ->dequeue();
         departTime = currentTime + customer.arrTime;
         Event newDepartEvent = Event(eType, departTime, 0);
-        PQ.add(newDepartEvent);
+        PQ->add(newDepartEvent);
     }
 
     else

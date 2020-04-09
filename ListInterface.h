@@ -29,7 +29,7 @@ public:
 #endif
 
 /** Sees whether this list is empty.
- @return True if the list is empty; otherwise returns false. */
+@return True if the list is empty; otherwise returns false. */
 // ==========================
 /** Gets the current number of entries in this list.
 @return The integer number of entries currently in the list. */
@@ -40,7 +40,7 @@ public:
  successful, newEntry is at the given position in the list,
  other entries are renumbered accordingly, and the returned
  value is true.
- @param newPosition The list position at which to insert newEntry.
+@param newPosition The list position at which to insert newEntry.
 @param newEntry The entry to insert into the list.
 @return True if insertion is successful, or false if not. */
 // ============================

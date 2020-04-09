@@ -67,7 +67,7 @@ RETURNS:
 NOTES:             
 ------------------------------------------------------------------------------- */
 template <class DT>
-bool EventQueue<DT>::add(DT &newEntry)
+bool EventQueue<DT>::add(DT &newEntry)  
 {
     slistPtr->insertSorted(newEntry);
 

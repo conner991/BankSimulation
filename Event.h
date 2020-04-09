@@ -18,7 +18,6 @@ class Event
 public:
     int arrTime, tTime, departTime; // char for A or D,
     char eventType;
-
     Event(char type, int AT, int TT);
     ~Event();
     //Event(bool type, int &newTime);
