@@ -98,7 +98,6 @@ DT CustQueue<DT>::peekFront() const
     {
         std::cout << "Queue is Empty!" << std::endl
                   << std::endl;
-        break;
     }
 
     else

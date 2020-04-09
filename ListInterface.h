@@ -22,7 +22,7 @@ public:
     virtual bool insert(int newPosition, const DT &newEntry) = 0;
     virtual bool remove(int position) = 0;
     virtual void clear() = 0;
-    virtual DT getEntry(int position) const = 0;
+    virtual DT getEntry(int position) = 0;
     virtual void setEntry(int position, const DT &newEntry) = 0;
 };
 

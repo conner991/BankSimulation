@@ -18,15 +18,20 @@ Conner Fissell		          02-13-2020		 1.0 - Set up class and Makefile.
 #ifndef __NODE_H__
 #define __NODE_H__
 #include <iostream>
+#include <cmath>
+#include <fstream>
+#include <iomanip>
+#include <string>
+#include <cstring>
+#include <cstdlib>
 
 template <class DT>
 class Node
 {
-private:
+public:
     DT item;        // Node data item
     Node<DT> *next; // Pointer to the next node
 
-public:
     Node(); // Default Constructor
     Node(const DT &anItem);
     Node(const DT &anItem, Node<DT> *nextNodePtr);

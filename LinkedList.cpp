@@ -98,6 +98,7 @@ bool LinkedList<DT>::insert(int newPosition, const DT &newEntry)
 
         itemCount++; // Increase count of entries
     }
+
     return ableToInsert;
 }
 
@@ -159,10 +160,10 @@ RETURNS:
 NOTES:             
 ------------------------------------------------------------------------------- */
 template <class DT>
-DT LinkedList<DT>::getEntry(int position) const
+DT LinkedList<DT>::getEntry(int position)
 {
     Node<DT> *nodePtr = getNodeAt(position);
-    return nodePtr->getNext();
+    return nodePtr->getItem();
 }
 
 /* -----------------------------------------------------------------------------
@@ -192,8 +193,8 @@ NOTES:          The private method getNodeAt locates the node at a given positio
 template <class DT>
 Node<DT> *LinkedList<DT>::getNodeAt(int position) const
 {
-    assert((position >= 1) && (position <= itemCount)); // Debugging check of pre-condition
-    Node<DT> *currentPtr = headPtr;                     // Count from beginning of the chain
+    // assert((position >= 1) && (position <= itemCount)); // Debugging check of pre-condition
+    Node<DT> *currentPtr = headPtr; // Count from beginning of the chain
 
     for (int i = 0; i < position; i++)
         currentPtr = currentPtr->getNext();

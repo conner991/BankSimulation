@@ -38,10 +38,8 @@ RETURNS:
 NOTES:             
 ------------------------------------------------------------------------------- */
 template <class DT>
-Node<DT>::Node(const DT &anItem)
+Node<DT>::Node(const DT &anItem) : item(anItem), next(nullptr)
 {
-    item = anItem;
-    next = nullptr;
 }
 
 /* -----------------------------------------------------------------------------

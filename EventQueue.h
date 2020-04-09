@@ -21,13 +21,13 @@ template <class DT>
 class EventQueue : public PriorityQueueInterface<DT>
 {
 private:
-    SortedLinkedList<DT> slistPtr; // Pointer to sorted list of items in the PQ
+    SortedLinkedList<DT> *slistPtr; // Pointer to sorted list of items in the PQ
 public:
     EventQueue();
     EventQueue(const EventQueue &pq);
     ~EventQueue();
     bool isEmpty() const;
-    bool add(const DT &newEntry);
+    bool add(DT &newEntry);
     bool remove();
     // @throw PrecondViolatedExcept if priority queue is empty
     DT peek() const; // throw(PreCondViolatedExcept);

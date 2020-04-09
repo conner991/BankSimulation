@@ -45,7 +45,7 @@ public:
     bool insert(int newPosition, const DT &newEntry);
     bool remove(int position);
     void clear();
-    DT getEntry(int position) const;
+    DT getEntry(int position);
     void setEntry(int position, const DT &newEntry);
 };
 

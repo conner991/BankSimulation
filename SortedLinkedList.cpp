@@ -18,6 +18,7 @@ Conner Fissell		            02-08-2020		1.0 - Started building basic outline
 #ifndef __SORTEDLINKEDLIST_CPP__
 #define __SORTEDLINKEDLIST_CPP__
 #include "SortedLinkedList.h"
+
 /* -----------------------------------------------------------------------------
 FUNCTION:          
 DESCRIPTION:       Default Constructor for LinkedList class
@@ -49,6 +50,7 @@ NOTES:
 template <class DT>
 SortedLinkedList<DT>::~SortedLinkedList()
 {
+    clear();
 }
 
 /* -----------------------------------------------------------------------------
@@ -71,9 +73,9 @@ RETURNS:
 NOTES:              
 ------------------------------------------------------------------------------- */
 template <class DT>
-void SortedLinkedList<DT>::insertSorted(const DT &newEntry)
+void SortedLinkedList<DT>::insertSorted(DT &newEntry)
 {
-    int newPosition = getPosition(newEntry);
+    int newPosition = fabs(getPosition(newEntry));
 
     // We need to call the LinkedList version of insert, since the
     // SortedLinkedList version does nothing but return false
@@ -87,7 +89,7 @@ RETURNS:
 NOTES:              
 ------------------------------------------------------------------------------- */
 template <class DT>
-bool SortedLinkedList<DT>::removeSorted(const DT &anEntry)
+bool SortedLinkedList<DT>::removeSorted(DT &anEntry)
 {
     bool ableToRemove = false;
     if (!LinkedList<DT>::isEmpty())
@@ -109,17 +111,22 @@ RETURNS:
 NOTES:              
 ------------------------------------------------------------------------------- */
 template <class DT>
-int SortedLinkedList<DT>::getPosition(const DT &anEntry) const
+int SortedLinkedList<DT>::getPosition(DT &anEntry)
 {
     int position = 1;
     int length = LinkedList<DT>::getLength();
 
-    while ((position <= length) && (anEntry > LinkedList<DT>::getEntry(position)))
+    Node<DT> f = LinkedList<DT>::getEntry(position);
+    Event a = f.item;
+    int b = a.arrTime;
+    int e = anEntry.arrTime;
+
+    while ((position <= length) && (e > b))
     {
         position++;
     }
 
-    if ((position > length) || (anEntry != LinkedList<DT>::getEntry(position)))
+    if ((position > length) || (e != b))
     {
         position = -position;
     }

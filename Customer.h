@@ -14,16 +14,17 @@ Conner Fissell     03-25-2020         1.0  Original version
 #define __CUSTOMER_H__
 
 #include "CustQueue.h"
-#include "EventQueue.h"
 
 class Customer
 {
 public:
-    int custNum;
+    int arrTime, transTime;
 
     Customer();
-    Customer(int num);
     ~Customer();
+    //Customer(int &num);
 };
+
+#include "Customer.cpp"
 
 #endif

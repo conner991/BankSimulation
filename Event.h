@@ -13,20 +13,20 @@ Conner Fissell     03-25-2020         1.0  Original version
 #ifndef __EVENT_H__
 #define __EVENT_H__
 
-#include "CustQueue.h"
-#include "EventQueue.h"
-
 class Event
 {
 public:
-    int arr, tTime;
-    bool aType;
-    Customer cust(int num);
+    int arrTime, tTime, departTime; // char for A or D,
+    char eventType;
 
-    Event();
-    Event(int x, int y);
+    Event(char type, int AT, int TT);
     ~Event();
-    bool isArrival();
+    //Event(bool type, int &newTime);
+    // void cust(int num);
+    //bool isArrival(bool type);
+    //void typeInfo(bool type, int &time);
 };
+
+#include "Event.cpp"
 
 #endif
